@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OptiCrop - Smart Agricultural Production Optimization Engine. An AI-powered crop recommendation system using soil and climate data.">
+    <title>{% block title %}OptiCrop - Smart Crop Recommendation Engine{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blur sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}" id="navbar-brand-logo">
+                <i class="fa-solid fa-leaf text-success me-2 fs-3 animate-leaf"></i>
+                <span class="fw-bold tracking-wide">Opti<span class="text-success-gradient">Crop</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}"><i class="fa-solid fa-house me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}#recommendation-form"><i class="fa-solid fa-wand-magic-sparkles me-1"></i> Analyze</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}#features-section"><i class="fa-solid fa-circle-info me-1"></i> Features</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-success btn-sm rounded-pill px-4" href="{{ url_for('home') }}#recommendation-form">Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content wrapper -->
+    <main class="content-wrapper">
+        <!-- Display Flash Messages -->
+        <div class="container mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show border-0 rounded-4 shadow-sm" role="alert">
+                            <div class="d-flex align-items-center">
+                                {% if category == 'danger' %}
+                                    <i class="fa-solid fa-circle-exclamation me-2 fs-4 text-danger"></i>
+                                {% elif category == 'warning' %}
+                                    <i class="fa-solid fa-triangle-exclamation me-2 fs-4 text-warning"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-circle-check me-2 fs-4 text-success"></i>
+                                {% endif %}
+                                <div>{{ message }}</div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-4 mt-auto">
+        <div class="container text-center text-md-start">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-leaf text-success me-2"></i>OptiCrop</h5>
+                    <p class="text-muted-custom mb-0 small">Smart Agricultural Production Optimization Engine powered by Machine Learning.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="text-muted-custom mb-0 small">&copy; 2026 OptiCrop. All rights reserved. Designed for sustainable farming.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
