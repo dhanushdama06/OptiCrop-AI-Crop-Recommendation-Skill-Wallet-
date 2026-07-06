@@ -224,15 +224,6 @@ The project can be deployed using:
 
 ---
 
-# 👨‍💻 Author
-
-**Dhanush**
-
-GitHub:
-https://github.com/dhanushdama06
-
----
-
 # 📄 License
 
 This project is created for educational and learning purposes.
