@@ -1,1 +1,0 @@
-# OptiCrop Utilities Package
